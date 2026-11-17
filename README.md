@@ -241,3 +241,48 @@ AD1 нь 51, 54-р мөрийн score definition-үүдийг, AD2 нь 49-р м
 Нотолгоо:
 - results/mvn-verify-alldefs.txt
 - results/jacoco-alldefs.csv
+## Хэсэг C — Fault Seeding (Мутацийн тест)
+
+| Мутаци | Өөрчлөлт | Тестийн тоо | Унасан | Үр дүн |
+|---|---|---:|---:|---|
+| M1 | `streak = streak + 1;` мөрийг устгасан | 11 | 2 | Илэрсэн |
+| M2 | `best = streak;` → `best = present;` | 11 | 0 | Амьд үлдсэн |
+| M2-kill | M2 дээр нэмэлт тест ажиллуулсан | 12 | 1 | Илэрсэн |
+| M3 | `int total = present + best;` нэмсэн | 12 | 0 | Амьд үлдсэн |
+
+### M1 — Missing Update
+
+`bonusFiveConsecutiveDaysFullReward` тест 8 оноо хүлээсэн боловч 5 оноо буцаасан.
+
+`bonusFiveConsecutiveDaysStreakOnly` тест 3 оноо хүлээсэн боловч 0 оноо буцаасан.
+
+`streak` нэмэгдэхээ больсон учраас дараалсан ирцийн урамшуулал буруу тооцогдсон.
+
+### M2 — Wrong Variable
+
+Эхний 11 тест мутацийг илрүүлээгүй. Учир нь тэдгээрийн шалгаж буй үр дүнд `best`-д `present` оноосон алдаа нөлөөлөөгүй.
+
+Нэмсэн `bonusInterruptedLongStreakMutationKill` тест:
+
+- Оролт: `{1,1,1,0,1,1,1,1}`, threshold = 8
+- Нийт ирсэн өдөр: 7
+- Хамгийн урт тасралтгүй ирц: 4
+- Зөв кодын үр дүн: 0
+- M2 кодын үр дүн: 3
+
+Шинэ тест M2 мутацийг амжилттай илрүүлсэн.
+
+### M3 — Dead Definition
+
+`int total = present + best;` мөрийг нэмсэн боловч `total` хувьсагч цаашид ашиглагдаагүй.
+
+Иймээс функцийн буцаах утга өөрчлөгдөөгүй бөгөөд 12 тест бүгд амжилттай ажилласан. Ашиглагдаагүй definition-ийг зөвхөн гаралтын утга шалгадаг тест илрүүлэх боломжгүй.
+
+### Нотолгооны файлууд
+
+- `results/mvn-test-M1.txt`
+- `results/mvn-test-M2.txt`
+- `results/mvn-test-M2-kill.txt`
+- `results/mvn-test-M3.txt`
+
+Мутаци бүрийн дараа `DataFlowTargets.java` эх кодыг `git restore` командаар сэргээсэн.

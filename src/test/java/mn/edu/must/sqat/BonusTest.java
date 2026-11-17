@@ -87,4 +87,12 @@ void allDefsResetAndNoReward() {
     ));
 }
 
+@Test
+@DisplayName("M2-kill: interrupted streak must not earn bonus")
+void bonusInterruptedLongStreakMutationKill() {
+    assertEquals(0, DataFlowTargets.bonus(
+        new int[]{1, 1, 1, 0, 1, 1, 1, 1}, 8
+    ));
+}
+
 }
