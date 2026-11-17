@@ -70,4 +70,29 @@ class BonusTest {
         assertEquals(3,
             DataFlowTargets.bonus(new int[]{1, 1, 1, 1, 1}, 6));
     }
+
+@Test
+@DisplayName("AD1: score 51->54, 54->56; best 43->53")
+void allDefsFullBonus() {
+    assertEquals(8, DataFlowTargets.bonus(
+        new int[]{1, 1, 1, 1, 1}, 5
+    ));
+}
+
+@Test
+@DisplayName("AD2: score 49->56; streak 46->41")
+void allDefsResetAndNoReward() {
+    assertEquals(0, DataFlowTargets.bonus(
+        new int[]{1, 0, 1}, 3
+    ));
+}
+
+@Test
+@DisplayName("M2-kill: interrupted streak must not earn bonus")
+void bonusInterruptedLongStreakMutationKill() {
+    assertEquals(0, DataFlowTargets.bonus(
+        new int[]{1, 1, 1, 0, 1, 1, 1, 1}, 8
+    ));
+}
+
 }
