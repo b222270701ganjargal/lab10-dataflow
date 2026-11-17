@@ -1,4 +1,53 @@
+
 # Лаборатори №10 — Өгөгдлийн урсгалын тест (DU хосууд)
+
+**Оюутны нэр:** Г.Ганжаргал
+**Оюутны код:** b222270701
+
+## Хөгжүүлэлтийн орчин
+
+
+### Java хувилбар
+`java -version` командын гаралт:
+
+```text
+openjdk version "17.0.8.1" 2023-08-24
+OpenJDK Runtime Environment Temurin-17.0.8.1+1 (build 17.0.8.1+1)
+OpenJDK 64-Bit Server VM Temurin-17.0.8.1+1 (build 17.0.8.1+1, mixed mode, sharing)
+```
+
+### Maven хувилбар
+`mvn -version` командын гаралт:
+
+```text
+Apache Maven 3.10.0 (c43a36b8d67be7e0805a411bc0898af1a51f5472)
+Maven home: C:\tools\apache-maven-3.10.0-bin\apache-maven-3.10.0
+Java version: 17.0.8.1, vendor: Eclipse Adoptium, runtime: C:\Users\gnjaa\AppData\Local\Programs\Eclipse Adoptium\jdk-17.0.8.101-hotspot
+Default locale: en_US, platform encoding: Cp1252, time zone: Asia/Ulaanbaatar
+OS name: "windows 11", version: "10.0", arch: "amd64", family: "windows"
+```
+
+## Эцсийн тест ба хамралт
+
+- Эцсийн тест: 14
+- Амжилттай: 14
+- Failures: 0
+- Errors: 0
+- BUILD SUCCESS
+- LINE_COVERED: 23
+- LINE_MISSED: 1
+- BRANCH_COVERED: 16
+- BRANCH_MISSED: 0
+- Branch coverage: 100%
+
+Эцсийн нотолгоо:
+- `results/mvn-verify-final.txt`
+- `results/jacoco-final.csv`
+
+Доорх хэсгүүдэд дурдсан 4 болон 11 тестийн үр дүн нь өмнөх үе шатуудын тусдаа хэмжилт болно.
+
+---
+
 
 ## Хэсэг A — gcd() функцийн DU анализ
 
